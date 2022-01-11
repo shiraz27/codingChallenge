@@ -63,10 +63,8 @@ const App: () => Node = () => {
       setExercise(data);
       setCurrentExercise(data[currentExerciseNumber]);
       data[currentExerciseNumber].answers.forEach(element => {
-        console.log('element', element);
         element.correct == true ? setAnswer(element.value) : null;
       });
-      console.log('exercise', data[0].german_sentence);
     });
   }, [update]);
 
@@ -224,7 +222,9 @@ const App: () => Node = () => {
               setUpdate(!update);
             } else {
               setButtonText('CONTINUE');
-              setCurrentExerciseNumber(currentExerciseNumber + 1);
+              if (chosenAnswer == answer) {
+                setCurrentExerciseNumber(currentExerciseNumber + 1);
+              }
               chosenAnswer == answer
                 ? setAnswerStyle(styles.correctAnswer)
                 : setAnswerStyle(styles.wrongAnswer);
